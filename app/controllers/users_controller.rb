@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :authenticate_user,except: [:create]
 
   # GET /users
   def index
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      auth_token = Knock::AuthToken.new_payload: {sub: @user.id}
       render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
