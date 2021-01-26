@@ -1,0 +1,2 @@
+class AgePet < ApplicationRecord
+end
