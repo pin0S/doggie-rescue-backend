@@ -1,3 +1,3 @@
 class Household < ApplicationRecord
-    enum status: [:no_backyard, :balcony_only, :small_backyard, :big_backyard]
+    enum household: {no_backyard: 0, balcony_only: 1, small_backyard: 2, big_backyard: 3}
 end
