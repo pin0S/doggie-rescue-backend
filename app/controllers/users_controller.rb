@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     if @user.save
       auth_token = Knock::AuthToken.new_payload: {sub: @user.id}
-      render json: @user, status: :created
+      render json: {email: @user.email, jwt: auth_token.token}, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
