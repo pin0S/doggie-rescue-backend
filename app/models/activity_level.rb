@@ -1,0 +1,2 @@
+class ActivityLevel < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class TypePet < ApplicationRecord
+end
