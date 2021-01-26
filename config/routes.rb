@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  post 'user_token' => 'user_token#create'
-  # resources :users
-  resources :pets
   
-  scope '/auth' do
-    post '/signin', to: 'user_token#create'
-    post '/signup', to: 'users#create'
+  scope '/api' do
+    resources :pets
+    scope '/auth' do
+      post '/sign_up', to: 'users#create'
+      post '/sign_in', to: 'users#sign_in'
+    end
   end
 
 end
