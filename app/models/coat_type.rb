@@ -1,0 +1,2 @@
+class CoatType < ApplicationRecord
+end
