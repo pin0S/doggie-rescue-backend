@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_105222) do
+ActiveRecord::Schema.define(version: 2021_01_27_224343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_105222) do
     t.string "name"
     t.string "breed"
     t.string "description"
-    t.integer "score"
+    t.bigint "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_105222) do
 
   create_table "trait_options", force: :cascade do |t|
     t.string "name"
-    t.integer "score"
+    t.bigint "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "trait_id", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_105222) do
     t.string "last"
     t.string "string"
     t.boolean "is_admin"
+    t.bigint "score"
   end
 
   add_foreign_key "adoptions", "pets"
