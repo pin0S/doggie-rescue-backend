@@ -1,4 +1,4 @@
 class Preference < ApplicationRecord
     belongs_to :user
-    has_one :trait_option
+    belongs_to :trait_option
 end

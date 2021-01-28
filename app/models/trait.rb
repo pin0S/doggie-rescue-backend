@@ -1,3 +1,3 @@
 class Trait < ApplicationRecord
-    has_one :trait_option
+    has_many :trait_options
 end

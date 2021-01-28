@@ -10,6 +10,18 @@
 Trait.destroy_all
 Pet.destroy_all
 
+[['household', ['no backyard', 'backyard']], ] => loop over entire array pull out each trait and insert into traits table
+
+[
+  ['household', ['no backyard', 'backyard']],
+  ['lifestyle', ['active', 'sedimeatary']
+].each_with_index do |attrs, index|
+  # each_with_index is zero based
+  trait = Trait.create! name: attrs.first
+  options = attrs.last.map { |option| { name: option, score: (2 ** index) }}
+  trait.trait_options.create!(options)
+end
+
 Trait.create!([{
     trait_name: "household"
   },

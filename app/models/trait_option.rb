@@ -1,5 +1,5 @@
 class TraitOption < ApplicationRecord
     has_many :preferences
-    has_many :pet_trait
-    has_one :trait
+    has_many :pet_traits
+    belongs_to :trait
 end
