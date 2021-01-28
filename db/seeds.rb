@@ -7,10 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # User.create(username: 'vito', email: 'vito@test.com', password: 'vito1', password_confirmation: 'vito1', phone: '12345678', first_name: 'Vito', last_name: 'Vitios', is_admin: false)
 # User.create(username: 'elijah', email: 'elijah@test.com', password: 'elijah1', password_confirmation: 'elijah1', phone: '12345678', first_name: 'Elijah', last_name: 'Elijahten', is_admin: false)
+<<<<<<< HEAD
+<<<<<<< HEAD
+require 'faker'
+
+
+=======
+>>>>>>> 70694c06229bdd1028ea1bab11fe1f442f7941bc
+=======
 
 require 'faker'
 
 
+>>>>>>> ce35fad28727bb2a76178dc0c3666911f3aa589d
 Trait.destroy_all
 Pet.destroy_all
 
@@ -58,6 +67,12 @@ Trait.create!([{
 
   p "Created #{Trait.count} traits."
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> ce35fad28727bb2a76178dc0c3666911f3aa589d
 traits = [{trait_id: 1, name: 'no backyard'}, 
   {trait_id: 1, name: 'home with garden / backyard'}, 
   {trait_id: 1, name: 'balcony'}, 
@@ -112,6 +127,10 @@ end
         description: "Lovable Big Dog, big head",
         score:  303846084
      },
+<<<<<<< HEAD
+>>>>>>> 70694c06229bdd1028ea1bab11fe1f442f7941bc
+=======
+>>>>>>> ce35fad28727bb2a76178dc0c3666911f3aa589d
 
  30.times do |index|
     Pet.create!([name: Faker::Creature::Dog.name,
@@ -127,6 +146,16 @@ end
                   score: Faker::Number.unique.number(digits: 9)])
   end
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+  p "Created #{Pet.count} pets."
+  
+  p "Names of pets: #{Pet.name[1]}."
+=======
+ p "Created #{Pet.count} pets."
+
+>>>>>>> 70694c06229bdd1028ea1bab11fe1f442f7941bc
+=======
 
   p "Created #{Pet.count} pets."
   
@@ -135,3 +164,4 @@ end
   p "Created #{Pet.count} pets."
 
 
+>>>>>>> ce35fad28727bb2a76178dc0c3666911f3aa589d
