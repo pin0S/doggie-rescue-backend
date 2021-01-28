@@ -29,7 +29,11 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', '~> 2.15', '>= 2.15.1'
 end
+
+#generating fake seed data
+
 
 group :development do
   gem 'listen', '~> 3.2'
