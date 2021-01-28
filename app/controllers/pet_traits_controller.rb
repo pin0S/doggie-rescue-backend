@@ -1,9 +1,10 @@
 class PetTraitsController < ApplicationController
-  before_action :set_pet_trait, only: [:show, :update, :destroy]
+  # before_action :set_pet_trait, only: [:show, :update, :destroy]
 
   # GET /pet_traits
   def index
-    @pet_traits = PetTrait.all
+    # @pet_traits = PetTrait.all
+    @pet_traits = PetTrait.includes(:trait_option)
 
     render json: @pet_traits
   end
@@ -15,7 +16,7 @@ class PetTraitsController < ApplicationController
 
   # POST /pet_traits
   def create
-    @pet_trait = Pet.PetTrait.new(pet_trait_params)
+    @pet_trait =PetTrait.new(pet_trait_params)
 
     if @pet_trait.save
       render json: @pet_trait, status: :created, location: @pet_trait
