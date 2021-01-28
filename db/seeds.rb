@@ -50,14 +50,12 @@ end
     Pet.create!([name: Faker::Creature::Dog.name,
                   breed: Faker::Creature::Dog.breed,
                   description: Faker::Creature::Dog.meme_phrase,
-                  score: Faker::Number.unique.number(digits: 9)])
   end
 
   30.times do |index|
     Pet.create!([name: Faker::Creature::Cat.name,
                   breed: Faker::Creature::Cat.breed,
                   description: Faker::Lorem.sentences(number: 1),
-                  score: Faker::Number.unique.number(digits: 9)])
   end
 
 

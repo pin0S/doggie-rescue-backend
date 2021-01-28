@@ -15,7 +15,7 @@ class PetTraitsController < ApplicationController
 
   # POST /pet_traits
   def create
-    @pet_trait = PetTrait.new(pet_trait_params)
+    @pet_trait = Pet.PetTrait.new(pet_trait_params)
 
     if @pet_trait.save
       render json: @pet_trait, status: :created, location: @pet_trait
