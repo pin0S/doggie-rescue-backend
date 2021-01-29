@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   scope '/api' do
     resources :pet_traits
+    resources :trait_options
     resources :pets
     scope '/auth' do
       post '/sign_up', to: 'users#create'

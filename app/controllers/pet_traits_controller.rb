@@ -4,7 +4,7 @@ class PetTraitsController < ApplicationController
   # GET /pet_traits
   def index
     # @pet_traits = PetTrait.all
-    @pet_traits = PetTrait.includes(:trait_option)
+    @pet_traits = PetTrait.all 
 
     render json: @pet_traits
   end
@@ -16,7 +16,7 @@ class PetTraitsController < ApplicationController
 
   # POST /pet_traits
   def create
-    @pet_trait =PetTrait.new(pet_trait_params)
+    @pet_trait = @pet.pet_traits.create(pet_trait_params)
 
     if @pet_trait.save
       render json: @pet_trait, status: :created, location: @pet_trait
@@ -43,12 +43,12 @@ class PetTraitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pet_trait
       @pet_trait = PetTrait.find(params[:id])
+
+      @trait_options = TraitOption.all
     end
 
     # Only allow a trusted parameter "white list" through.
     def pet_trait_params
-      params.require(:pet_traits).permit(:pet_id,
-        trait_options: [ :name, :score, :trait_id ]
-      )
+      params.require(:pet_traits).permit(:pet_id, :trait_options_id)
     end
 end
