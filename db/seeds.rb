@@ -22,47 +22,33 @@ traits = [
   ['pet_activity_level', ['low', 'medium', 'high']],
   ['species', ['dog', 'cat']],
   ['pet_size', ['small','medium','large']],
-  ['coat_type', ['shedding','low shedding','no shed']],
   ['experience', ['none','some','lots']],
   ['age', ['puppy','1-3','4-6','7-9','old']],
   ['gender', ['male', 'female']]
 ].each_with_index do |attrs, index|
   # each_with_index is zero based
   trait = Trait.create! name: attrs.first
-  
-  options = attrs.last.each do |el|  
-    trait.trait_options.create(name: el, score: score)
+
+  options = attrs.last.each do |el|
+    trait.trait_options.create!(name: el, score: score)
     score *= 2
   end
 end
 
+p "Created #{Trait.count} traits. & #{TraitOption.count}"
 
 
-  p "Created #{Trait.count} traits. & #{TraitOption.count}"
+30.times do |index|
+  Pet.create!([name: Faker::Creature::Dog.name,
+               breed: Faker::Creature::Dog.breed,
+               description: Faker::Creature::Dog.meme_phrase,
+  ])
+end
 
-
-
-
-
-
-
- 30.times do |index|
-    Pet.create!([name: Faker::Creature::Dog.name,
-                  breed: Faker::Creature::Dog.breed,
-                  description: Faker::Creature::Dog.meme_phrase,
-                  ])
-  end
-
-  30.times do |index|
-    Pet.create!([name: Faker::Creature::Cat.name,
-                  breed: Faker::Creature::Cat.breed,
-                  description: Faker::Lorem.sentences(number: 1),
-                  ])
-  end
-
-
-  p "Created #{Pet.count} pets."
-  
-
-
-  
+30.times do |index|
+  Pet.create!([name: Faker::Creature::Cat.name,
+               breed: Faker::Creature::Cat.breed,
+               description: Faker::Lorem.sentences(number: 1),
+  ])
+end
+p "Created #{Pet.count} pets."
