@@ -1,8 +1,6 @@
 class Pet < ApplicationRecord
-  after_save :add_default_image, on: [:create, :update]
 
-  validates :species, presence: true
-
+  
   has_one :adoption
   has_one_attached :image
   # has_one :pet_trait, dependent: :destroy
@@ -20,10 +18,6 @@ class Pet < ApplicationRecord
   # ASSIGNING an existing trait to a pet, which will be represented
   # in the database as a new row in the join table `pet_traits`
 
-private def add_default_image
-  unless image.attached?
-    self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "dog.png")), filename: 'dog.png' , content_type: "image/png")
-  end
-end
+
 
 end
