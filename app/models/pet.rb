@@ -4,7 +4,7 @@ class Pet < ApplicationRecord
   validates :species, presence: true
 
   has_one :adoption
-  has_one :image_attached
+  has_one_attached :image
   # has_one :pet_trait, dependent: :destroy
   # Logically a pet has many traits, no?
   has_many :pet_traits, dependent: :destroy
