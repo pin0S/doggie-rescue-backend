@@ -29,9 +29,10 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
         auth_token = Knock::AuthToken.new payload: {sub: @user.id}
         render json: {email: @user.email, jwt: auth_token.token}, status: 200
+        console.log('sign in success')
     else
         render json: {error: "Incorrect Username or Password"}, status: 404 
-
+        console.log('sign in unsucessful')
     end 
   end 
 
