@@ -42,6 +42,7 @@ p "Created #{Trait.count} traits. & #{TraitOption.count}"
   Pet.create!([name: Faker::Creature::Dog.name,
                breed: Faker::Creature::Dog.breed,
                description: Faker::Creature::Dog.meme_phrase,
+               
   ])
 end
 
@@ -49,6 +50,7 @@ end
   Pet.create!([name: Faker::Creature::Cat.name,
                breed: Faker::Creature::Cat.breed,
                description: Faker::Lorem.sentences(number: 1),
+               
   ])
 end
 p "Created #{Pet.count} pets."
