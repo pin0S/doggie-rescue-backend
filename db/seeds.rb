@@ -5,8 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(username: 'vito', email: 'vito@test.com', password: 'vito1', score: 5002200)
-User.create(username: 'elijah', email: 'elijah@test.com', password: 'elijah1', score: 6789010)
+
 
 
 
@@ -62,4 +61,22 @@ end
   ])
 end
 
+
+ 
+trait_ops_ids = Trait.all.map {|trait| trait.trait_option_ids.sample}
+User.create!([username: Faker::Name.first_name,
+              email: Faker::Internet.email,
+              password: "123456",
+              trait_option_ids: trait_ops_ids
+])
+
+User.create!([username: Faker::Name.first_name,
+  email: Faker::Internet.email,
+  password: "123456",
+  trait_option_ids: trait_ops_ids
+])
+ 
+
+
 p "Created #{Pet.count} pets."
+p "Created #{User.count} users with preferences"
