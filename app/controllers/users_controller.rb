@@ -50,6 +50,14 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  # Matches of Pets to user preferences
+  def matches
+    @user = User.find(params[:id])
+    @pet = Pet.all
+
+    
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -58,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:email, :password, :password_confirmation)
+      params.permit(:email, :password, :password_confirmation, :user)
     end
 end

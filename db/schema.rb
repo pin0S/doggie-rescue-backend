@@ -110,6 +110,11 @@ ActiveRecord::Schema.define(version: 2021_01_31_224932) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "phone"
+    t.string "first_name"
+    t.string "last"
+    t.string "string"
+    t.boolean "is_admin"
     t.bigint "score"
   end
 

@@ -10,6 +10,8 @@
 
 require 'faker'
 
+PetTrait.destroy_all
+TraitOption.destroy_all
 Trait.destroy_all
 Pet.destroy_all
 
@@ -39,19 +41,23 @@ end
 p "Created #{Trait.count} traits. & #{TraitOption.count}"
 
 
+
 30.times do |index|
+  trait_ops_ids = Trait.all.map {|trait| trait.trait_option_ids.sample}
   Pet.create!([name: Faker::Creature::Dog.name,
                breed: Faker::Creature::Dog.breed,
                description: Faker::Creature::Dog.meme_phrase,
-               
+               trait_option_ids: trait_ops_ids
   ])
 end
 
 30.times do |index|
+  trait_ops_ids = Trait.all.map {|trait| trait.trait_option_ids.sample}
   Pet.create!([name: Faker::Creature::Cat.name,
                breed: Faker::Creature::Cat.breed,
                description: Faker::Lorem.sentences(number: 1),
-               
+               trait_option_ids: trait_ops_ids
   ])
 end
+
 p "Created #{Pet.count} pets."
