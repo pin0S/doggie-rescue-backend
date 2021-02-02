@@ -10,8 +10,7 @@ Content-Type: application/json
 {
     "name": "Max",
     "breed": "Golden Retriever",
-    "description": "A very good boy, may he RIP",
-    "score": 6122200912
+    "description": "A very good boy, may he RIP"
 }
 
 ### Pet - proof of unsuccessful pet posting
@@ -42,13 +41,12 @@ Content-Type: application/json
     "id": 2,
     "name": "Tank",
     "breed": "Pug",
-    "description": "beautiful dog",
-    "score": null
+    "description": "beautiful dog"
   }
 
 ### Pet delete pet
 
-DELETE http://localhost:3000/api/pets/1
+DELETE http://localhost:3000/api/pets/2
 
 ### Pet - unsuccessful delete pet
 
