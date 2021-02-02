@@ -5,11 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# User.create(username: 'vito', email: 'vito@test.com', password: 'vito1', password_confirmation: 'vito1', phone: '12345678', first_name: 'Vito', last_name: 'Vitios', is_admin: false)
-# User.create(username: 'elijah', email: 'elijah@test.com', password: 'elijah1', password_confirmation: 'elijah1', phone: '12345678', first_name: 'Elijah', last_name: 'Elijahten', is_admin: false)
+
+
+
 
 require 'faker'
 
+PetTrait.destroy_all
+TraitOption.destroy_all
 Trait.destroy_all
 Pet.destroy_all
 
@@ -22,9 +25,10 @@ traits = [
   ['pet_activity_level', ['low', 'medium', 'high']],
   ['species', ['dog', 'cat']],
   ['pet_size', ['small','medium','large']],
+  ['coat_type', ['shedding','low shedding','no shed']],
   ['experience', ['none','some','lots']],
   ['age', ['puppy','1-3','4-6','7-9','old']],
-  ['gender', ['male', 'female']]
+  ['gender', ['male', 'female']]  
 ].each_with_index do |attrs, index|
   # each_with_index is zero based
   trait = Trait.create! name: attrs.first
@@ -38,17 +42,41 @@ end
 p "Created #{Trait.count} traits. & #{TraitOption.count}"
 
 
+
 30.times do |index|
+  trait_ops_ids = Trait.all.map {|trait| trait.trait_option_ids.sample}
   Pet.create!([name: Faker::Creature::Dog.name,
                breed: Faker::Creature::Dog.breed,
                description: Faker::Creature::Dog.meme_phrase,
+               trait_option_ids: trait_ops_ids
   ])
 end
 
 30.times do |index|
+  trait_ops_ids = Trait.all.map {|trait| trait.trait_option_ids.sample}
   Pet.create!([name: Faker::Creature::Cat.name,
                breed: Faker::Creature::Cat.breed,
                description: Faker::Lorem.sentences(number: 1),
+               trait_option_ids: trait_ops_ids
   ])
 end
+
+
+ 
+trait_ops_ids = Trait.all.map {|trait| trait.trait_option_ids.sample}
+User.create!([username: Faker::Name.first_name,
+              email: Faker::Internet.email,
+              password: "123456",
+              trait_option_ids: trait_ops_ids
+])
+
+User.create!([username: Faker::Name.first_name,
+  email: Faker::Internet.email,
+  password: "123456",
+  trait_option_ids: trait_ops_ids
+])
+ 
+
+
 p "Created #{Pet.count} pets."
+p "Created #{User.count} users with preferences"

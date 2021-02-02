@@ -1,0 +1,119 @@
+### Pets - Index method
+
+GET http://localhost:3000/api/pets
+
+### Pet - Post Successfully post a pet
+
+POST http://localhost:3000/api/pets
+Content-Type: application/json
+
+{
+    "name": "Max",
+    "breed": "Golden Retriever",
+    "description": "A very good boy, may he RIP"
+}
+
+### Pet - proof of unsuccessful pet posting
+
+POST http://localhost:3000/api/pets
+Content-Type: application/json
+
+{
+    "name": "Max"
+}
+
+### Pet - Show ID 1 
+
+GET http://localhost:3000/api/pets/1
+
+
+### Pet - unsuccessful show request
+
+GET http://localhost:3000/api/pets/1000
+
+
+### Pet - update pet 1
+
+PUT http://localhost:3000/api/pets/2
+Content-Type: application/json
+
+  {
+    "id": 2,
+    "name": "Tank",
+    "breed": "Pug",
+    "description": "beautiful dog"
+  }
+
+### Pet delete pet
+
+DELETE http://localhost:3000/api/pets/2
+
+### Pet - unsuccessful delete pet
+
+DELETE http://localhost:3000/api/pets/1000
+
+
+
+### preferences - Index method
+
+GET http://localhost:3000/api/user/preferences
+
+### Pet - Post Successfully post preferences
+
+POST http://localhost:3000/api/user/preferences
+Content-Type: application/json
+
+{
+    "preference": {
+        "user_id": 1,
+        "trait_option_id": 64
+    }
+}
+
+###  proof of unsuccessful preference posting
+
+POST http://localhost:3000/api/user/preferences
+Content-Type: application/json
+
+{
+    "preference": {
+        "user_id": 1,
+        "trait_option_id": 0  
+    } 
+}
+
+### Show preferences 
+
+GET http://localhost:3000/api/user/preferences/12
+
+
+### Pref - unsuccessful show request
+
+GET http://localhost:3000/api/user/preferences/1000
+
+
+### Preference - update user preferences
+
+PUT http://localhost:3000/api/user/preferences/3
+Content-Type: application/json
+
+  {
+    "preference": {
+        "user_id": 1,
+        "trait_option_id": 33  
+    }
+}
+
+### Preferences - DELETE
+
+DELETE http://localhost:3000/api/user/preferences/3
+
+
+
+### Pref - unsuccessful delete preference
+
+DELETE http://localhost:3000/api/user/preferences/1000
+
+
+
+

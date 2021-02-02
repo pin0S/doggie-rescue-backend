@@ -29,9 +29,10 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
         auth_token = Knock::AuthToken.new payload: {sub: @user.id}
         render json: {email: @user.email, jwt: auth_token.token}, status: 200
+        puts 'sign in success'
     else
         render json: {error: "Incorrect Username or Password"}, status: 404 
-
+        puts 'sign in unsucessful'
     end 
   end 
 
@@ -49,6 +50,14 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  # Matches of Pets to user preferences
+  def matches
+    @user = User.find(params[:id])
+    @pet = Pet.all
+
+    
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -57,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:email, :password, :password_confirmation)
+      params.permit(:email, :password, :password_confirmation, :user)
     end
 end

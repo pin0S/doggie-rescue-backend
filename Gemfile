@@ -26,7 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-gem 'faker', '~> 2.15', '>= 2.15.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -34,7 +34,6 @@ group :development, :test do
   gem 'faker', '~> 2.15', '>= 2.15.1'
 end
 
-#generating fake seed data
 
 
 group :development do
@@ -48,3 +47,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "aws-sdk-s3", "~> 1.87"
+
+gem 'faker', '~> 2.15', '>= 2.15.1'
