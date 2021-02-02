@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+  before_action :authenticate_user, :only [:update, :destroy, :match, :show, :index]
   # GET /users
   def index
     @users = User.all
@@ -51,11 +51,22 @@ class UsersController < ApplicationController
   end
 
   # Matches of Pets to user preferences
-  def matches
-    @user = User.find(params[:id])
-    @pet = Pet.all
+  def match
+    @user = current_user
+    @user_trait_prefs = @user.trait_options.map {|trait| trait.score}
+    @pets = Pet.all
 
+    @matches = []
+
+    for pet in @pets do
+      score = 0
     
+      for traits in pet.trait_options do
+        if (traits.score.to_s(2) && @user.trait)
+          add one to score 
+      end       
+    end
+
   end 
 
   private
