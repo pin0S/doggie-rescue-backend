@@ -84,7 +84,7 @@ Content-Type: application/json
 
 ### Show preferences 
 
-GET http://localhost:3000/api/user/preferences/1
+GET http://localhost:3000/api/user/preferences/12
 
 
 ### Pref - unsuccessful show request
