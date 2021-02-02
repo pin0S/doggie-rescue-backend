@@ -24,22 +24,28 @@ class PetsController < ApplicationController
 
   # PATCH/PUT /pets/1
   def update
-    if @pet.update(pet_params)
-      render json: @pet
-    else
+    @pet.update(pet_params)
+    if @pet.errors.any? 
       render json: @pet.errors, status: :unprocessable_entity
+    else
+      render json: @pet, status: 201
     end
   end
 
   # DELETE /pets/1
   def destroy
     @pet.destroy
+    render json: 204
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_pet
+    begin
     @pet = Pet.find(params[:id])
+    rescue
+      render json: {error: "Pet not found"}, status: 404
+    end
   end
 
   # Only allow a trusted parameter "white list" through.
