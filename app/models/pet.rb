@@ -1,6 +1,4 @@
 class Pet < ApplicationRecord
-
-  
   has_one :adoption
   has_one_attached :image
   has_many :pet_traits, dependent: :destroy
@@ -12,7 +10,5 @@ class Pet < ApplicationRecord
   # All we're doing if ASSIGNING an existing trait to a pet, 
   # which will be represented in the database as a new row
   # in the join table `pet_traits`
-
-
 
 end
