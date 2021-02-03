@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, :only [:update, :destroy, :match, :show, :index]
+  # before_action :authenticate_user
   # GET /users
   def index
     @users = User.all
@@ -52,20 +52,25 @@ class UsersController < ApplicationController
 
   # Matches of Pets to user preferences
   def match
-    @user = current_user
+    @user = User.find(1)
     @user_trait_prefs = @user.trait_options.map {|trait| trait.score}
     @pets = Pet.all
 
     @matches = []
 
-    for pet in @pets do
+    for pet in @pets.all do
       score = 0
-    
-      for traits in pet.trait_options do
-        if (traits.score.to_s(2) && @user.trait)
-          add one to score 
-      end       
+      i = 0
+      for trait in pet.trait_options
+        if trait.score == @user_trait_prefs[i]
+          score += 1
+        end
+        i += 1
+      end
+      @matches.push({pet_id: pet.id, score: score})
     end
+
+    render json: @matches
 
   end 
 
@@ -80,3 +85,4 @@ class UsersController < ApplicationController
       params.permit(:email, :password, :password_confirmation, :user)
     end
 end
+

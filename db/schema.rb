@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2021_02_02_073351) do
   add_foreign_key "adoptions", "users"
   add_foreign_key "pet_traits", "pets"
   add_foreign_key "pet_traits", "trait_options"
-  add_foreign_key "preferences", "trait_options", column: "trait_options_id"
+  add_foreign_key "preferences", "trait_options"
   add_foreign_key "preferences", "users"
   add_foreign_key "shortlists", "pets"
   add_foreign_key "shortlists", "users"
