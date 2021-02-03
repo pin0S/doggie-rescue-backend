@@ -67,7 +67,8 @@ class UsersController < ApplicationController
         end
         i += 1
       end
-      @matches.push({pet_id: pet.id, score: score})
+      @matches.push({pet_id: pet.id, name: pet.name, 
+        gender: pet.trait_options[10].name, score: score})
     end
 
     render json: @matches
