@@ -52,7 +52,8 @@ class UsersController < ApplicationController
 
   # Matches of Pets to user preferences
   def match
-    @user = User.find(1)
+    #must change to current user once ready for front end
+    @user = User.find(current_user.id)
     @user_trait_prefs = @user.trait_options.map {|trait| trait.score}
     @pets = Pet.all
 
