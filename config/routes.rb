@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   scope '/api' do
     resources :pets
+    get '/matches', to: 'users#match'
     scope '/user' do
       resources :preferences
     end

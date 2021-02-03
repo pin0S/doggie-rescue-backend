@@ -6,9 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-
-
 require 'faker'
 
 PetTrait.destroy_all
@@ -78,5 +75,5 @@ User.create!([username: Faker::Name.first_name,
  
 
 
-p "Created #{Pet.count} pets."
+# p "Created #{Pet.count} pets."
 p "Created #{User.count} users with preferences"
