@@ -4,13 +4,13 @@ class PetsController < ApplicationController
   # GET /pets
   def index
     @pets = Pet.all
-
-    render json: @pets
+    render json: @pets.to_json(include: [:trait_options])
   end
+
 
   # GET /pets/1
   def show
-    render json: @pet
+    render json: @pet.to_json(include: [:trait_options])
   end
 
   # POST /pets
