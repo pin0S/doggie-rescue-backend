@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 2021_02_02_073351) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
-    t.bigint "trait_options_id", null: false
-    t.index ["trait_options_id"], name: "index_preferences_on_trait_options_id"
+    t.bigint "trait_option_id", null: false
+    t.index ["trait_option_id"], name: "index_preferences_on_trait_option_id"
     t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
@@ -109,11 +109,6 @@ ActiveRecord::Schema.define(version: 2021_02_02_073351) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "phone"
-    t.string "first_name"
-    t.string "last"
-    t.string "string"
-    t.boolean "is_admin"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

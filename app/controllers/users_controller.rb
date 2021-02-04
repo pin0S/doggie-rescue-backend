@@ -53,23 +53,19 @@ class UsersController < ApplicationController
   # Matches of Pets to user preferences
   def match
     #must change to current user once ready for front end
-    @user = User.find(current_user.id)
-    @user_trait_prefs = @user.trait_options.map {|trait| trait.score}
+    @user = User.find(current_user)
     @pets = Pet.all
 
     @matches = []
 
-    for pet in @pets.all do
-      score = 0
-      i = 0
-      for trait in pet.trait_options
-        if trait.score == @user_trait_prefs[i]
-          score += 1
-        end
-        i += 1
-      end
-      @matches.push({pet_id: pet.id, name: pet.name, 
-        gender: pet.trait_options[10].name, score: score})
+    for pet in @pets do
+      score = pet.trait_option_ids.intersection(@user.trait_option_ids).length
+      @matches.push({
+            pet_id: pet.id, 
+            name: pet.name, 
+            gender: pet.trait_options[10].name, 
+            score: score, 
+            species: pet.trait_options[5]})
     end
 
     render json: @matches
