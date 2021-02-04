@@ -7,8 +7,6 @@ class Pet < ApplicationRecord
   # to a pet, we need to know the trait_option's `id`
   has_many :trait_options, through: :pet_traits
 
-  # All we're doing if ASSIGNING an existing trait to a pet, 
-  # which will be represented in the database as a new row
-  # in the join table `pet_traits`
+  has_many :shortlist
 
 end
