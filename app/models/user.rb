@@ -5,5 +5,5 @@ class User < ApplicationRecord
     has_many :preferences, dependent: :destroy
     has_many :trait_options, through: :preferences
 
-    has_many :shortlist
+    has_one :shortlist
 end
