@@ -1,10 +1,10 @@
 class ShortlistsController < ApplicationController
   # before_action :set_shortlist, only: [:show, :update, :destroy]
-  before_action :authenticate_user
+  # before_action :authenticate_user! 
 
   # GET /shortlists
   def index
-    @shortlists = current_user.first.shortlist
+    @shortlists = current_user.shortlist
     @shortlist_pets = @shortlists.map {|list| {name: Pet.find(list.pet_id).name, id: Pet.find(list.pet_id).id}}
 
     render json: @shortlist_pets
@@ -17,7 +17,7 @@ class ShortlistsController < ApplicationController
 
   # POST /shortlists
   def create
-    @shortlist = Shortlist.create(shortlist_params)
+    @shortlist = Shortlist.create(user_id: current_user.id, shortlist_params)
 
     if @shortlist.save
       render json: @shortlist, status: :created, location: @shortlist
@@ -48,6 +48,6 @@ class ShortlistsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def shortlist_params
-      params.require(:shortlist).permit(:user_id, :pet_id)
+      params.require(:shortlist).permit(:pet_id, :user_id).with_defaults(user_id: current_user.id)
     end
 end
