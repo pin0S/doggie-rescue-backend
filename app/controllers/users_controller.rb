@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+  # before_action :authenticate_user
   # GET /users
   def index
     @users = User.all
@@ -51,11 +51,25 @@ class UsersController < ApplicationController
   end
 
   # Matches of Pets to user preferences
-  def matches
-    @user = User.find(params[:id])
-    @pet = Pet.all
+  def match
+    #must change to current user once ready for front end
+    @user = User.find(current_user)
+    @pets = Pet.all
 
-    
+    @matches = []
+
+    for pet in @pets do
+      score = pet.trait_option_ids.intersection(@user.trait_option_ids).length
+      @matches.push({
+            pet_id: pet.id, 
+            name: pet.name, 
+            gender: pet.trait_options[10].name, 
+            score: score, 
+            species: pet.trait_options[5]})
+    end
+
+    render json: @matches
+
   end 
 
   private
@@ -69,3 +83,4 @@ class UsersController < ApplicationController
       params.permit(:email, :password, :password_confirmation, :user)
     end
 end
+
