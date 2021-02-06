@@ -17,10 +17,10 @@ class ShortlistsController < ApplicationController
 
   # POST /shortlists
   def create
-    @shortlist = Shortlist.create(user_id: current_user.id, shortlist_params)
+    @shortlist = Shortlist.create(shortlist_params)
 
     if @shortlist.save
-      render json: @shortlist, status: :created, location: @shortlist
+      render json: @shortlist, status: :created
     else
       render json: @shortlist.errors, status: :unprocessable_entity
     end
