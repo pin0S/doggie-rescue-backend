@@ -1,5 +1,6 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:show, :update, :destroy]
+  before_action :authenticate_user, only: [:show]
 
   # GET /preferences
   def index
@@ -15,7 +16,7 @@ class PreferencesController < ApplicationController
 
   # POST /preferences
   def create
-    @preference = Preference.new(preference_params)
+    @preference = current_user.preferences.create(preference_params)
 
     if @preference.save
       render json: @preference, status: :created, location: @preference
@@ -46,6 +47,6 @@ class PreferencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def preference_params
-      params.require(:preference).permit(:user_id, trait_option_ids: [])
+      params.require(:preference).permit(trait_option_id: [], user_id:).with_defaults(user_id: current_user.id)
     end
 end
