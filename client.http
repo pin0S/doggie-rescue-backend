@@ -11,6 +11,7 @@ Content-Type: application/json
     "name": "Max",
     "breed": "Golden Retriever",
     "description": "A very good boy, may he RIP"
+    "trait_option_id": ['no backyard']
 }
 
 ### Pet - proof of unsuccessful pet posting
@@ -56,18 +57,18 @@ DELETE http://localhost:3000/api/pets/1000
 
 ### preferences - Index method
 
-GET http://localhost:3000/api/user/preferences
+# GET http://localhost:3000/api/preferences/index
 
 ### Pet - Post Successfully post preferences
 
-POST http://localhost:3000/api/user/preferences
+POST http://localhost:3000/api/users/preferences
 Content-Type: application/json
 
-{
+    {
     "preference": {
-        "user_id": 1,
-        "trait_option_id": 64
-    }
+        "user_id": 3,
+        "trait_option_id": 19  
+    } 
 }
 
 ###  proof of unsuccessful preference posting
@@ -78,7 +79,7 @@ Content-Type: application/json
 {
     "preference": {
         "user_id": 1,
-        "trait_option_id": 0  
+        "trait_option_id": 19  
     } 
 }
 
@@ -117,3 +118,6 @@ DELETE http://localhost:3000/api/user/preferences/1000
 
 
 
+### Users - Index method - note authentication needs to be disabled!
+
+GET http://localhost:3000/api/users
