@@ -1,6 +1,6 @@
 class ShortlistsController < ApplicationController
   # before_action :set_shortlist, only: [:show, :update, :destroy]
-  # before_action :authenticate_user! 
+  before_action :authenticate_user! 
 
   # GET /shortlists
   def index
