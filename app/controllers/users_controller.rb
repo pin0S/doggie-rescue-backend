@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, except: [:sign_in, :create]
+  before_action :authenticate_user, only: [:index]
   # GET /users
   def index
     @users = User.all
@@ -52,9 +52,8 @@ class UsersController < ApplicationController
 
   # Matches of Pets to user preferences
   def match
-    #must change to current user once ready for front end
+  
     @user = User.find(current_user.id)
-    puts @user.trait_option_ids
     @pets = Pet.all
 
     @matches = []
@@ -70,7 +69,7 @@ class UsersController < ApplicationController
             species: pet.trait_options[5]})
     end
 
-    render json: @matches.sort_by { |hsh| hsh[:score] }
+    render json: @matches
 
   end 
 
