@@ -19,7 +19,9 @@ class PetsController < ApplicationController
 
   # POST /pets
   def create
-    if @pet = Pet.create!([pet_params])
+    @pet = Pet.new(pet_params)
+    @pet.featured_image.attach(params[:signed_blob_id])
+    if @pet.save!
       render json: @pet, status: :created
     else
       render json: @pet.errors, status: :unprocessable_entity
@@ -54,7 +56,6 @@ class PetsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def pet_params
-    # params.permit(:name, :breed, :description)
-    params.require(:pet).permit(:name, :breed, :description, trait_option_ids: [])
+    params.require(:pet).permit(:name, :breed, :description, :featured_image, trait_option_ids: [])
   end
 end
