@@ -53,12 +53,6 @@ ActiveRecord::Schema.define(version: 2021_02_07_014727) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "controllers", force: :cascade do |t|
-    t.string "shortlist"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "pet_traits", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
