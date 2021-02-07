@@ -25,7 +25,7 @@ Content-Type: application/json
 
 ### Pet - Show ID 1 
 
-GET http://localhost:3000/api/pets/1
+GET http://localhost:3000/api/pets/64
 
 
 ### Pet - unsuccessful show request
