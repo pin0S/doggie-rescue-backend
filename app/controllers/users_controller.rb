@@ -44,12 +44,13 @@ class UsersController < ApplicationController
   end 
 
   def preferences
-    @preference = Preference.new(params)
+    @user = User.find(current_user.id)
+    
 
-    if @preference.save
-      render json: @preference, status: :created, location: @user.preferences
+    if @user.update(user_params)
+      render json: @user, status: :created
     else
-      render json: @preference.errors, status: :unprocessable_entity
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -58,7 +59,6 @@ class UsersController < ApplicationController
   
     if @user.update(user_params)
       render json: @user
-      render json: @preferences
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -67,7 +67,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
-    @user.preference.destroy
   end
 
   # Matches of Pets to user preferences
@@ -109,7 +108,7 @@ class UsersController < ApplicationController
     end
 
     def preference_params
-      params.require(:preference).permit(:user_id, trait_option_ids: [])
+      params.permit(trait_option_ids: [])
     end
 end
 
