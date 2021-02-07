@@ -1,6 +1,5 @@
 class Pet < ApplicationRecord
   has_one :adoption
-  has_one_attached :featured_image
   has_many :pet_traits, dependent: :destroy
 
   # Need the following relationship since when we add a trait_option

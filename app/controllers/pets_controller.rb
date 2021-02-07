@@ -3,7 +3,7 @@ class PetsController < ApplicationController
 
   # GET /pets
   def index
-    @pets = Pet.all.with_attached_image
+    @pets = Pet.all
 
     render json: @pets.to_json(
         :include => {
@@ -19,8 +19,8 @@ class PetsController < ApplicationController
 
   # POST /pets
   def create
-    @pet = Pet.new(pet_params)
-    @pet.featured_image.attach(params[:signed_blob_id])
+    @pet = Pet.create(pet_params)
+    
     if @pet.save!
       render json: @pet, status: :created
     else
