@@ -3,7 +3,7 @@ class PetsController < ApplicationController
 
   # GET /pets
   def index
-    @pets = Pet.all.with_attached_image
+    @pets = Pet.all
 
     render json: @pets.to_json(
         :include => {
