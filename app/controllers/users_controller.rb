@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:index]
+  # before_action :authenticate_user, only: [:index]
   # GET /users
   def index
     @users = User.all
@@ -7,9 +7,16 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+  def preference_index
+    @preferences = Preference.all
+
+    render json: @preferences
+  end
+
   # GET /users/1
   def show
     render json: @user
+    render json: @user.preferences
   end
 
   # POST /users
@@ -36,11 +43,22 @@ class UsersController < ApplicationController
     end 
   end 
 
+  def preferences
+    @preference = Preference.new(params)
+
+    if @preference.save
+      render json: @preference, status: :created, location: @user.preferences
+    else
+      render json: @preference.errors, status: :unprocessable_entity
+    end
+  end
+
   # PATCH/PUT /users/1
   def update
   
     if @user.update(user_params)
       render json: @user
+      render json: @preferences
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -49,6 +67,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+    @user.preference.destroy
   end
 
   # Matches of Pets to user preferences
@@ -80,9 +99,17 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def set_preference
+      @preference = Preference.find(params[:id])
+    end
+
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:email, :password, :password_confirmation, :user)
+      params.permit(:email, :password, :password_confirmation, :user, trait_option_ids: [])
+    end
+
+    def preference_params
+      params.require(:preference).permit(:user_id, trait_option_ids: [])
     end
 end
 

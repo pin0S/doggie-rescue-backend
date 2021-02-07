@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     get '/shortlist', to: 'shortlists#index'
     post '/shortlist', to: 'shortlists#create'
     get '/matches', to: 'users#match'
-    scope '/user' do
-      resources :preferences
-    end
+    
+    resources :users
+    post '/users/preferences', to: 'users#preferences'
+    
     scope '/auth' do
       post '/sign_up', to: 'users#create'
       post '/sign_in', to: 'users#sign_in'
