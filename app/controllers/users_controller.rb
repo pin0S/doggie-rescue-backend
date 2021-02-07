@@ -109,7 +109,7 @@ class UsersController < ApplicationController
     end
 
     def preference_params
-      params.require(:preference).permit(:user_id, trait_option_ids: [])
+      params.require(@current_user).permit(:user_id, trait_option_ids: [])
     end
 end
 
