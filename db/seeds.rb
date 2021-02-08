@@ -24,7 +24,7 @@ traits = [
   ['pet_size', ['small','medium','large']],
   ['coat_type', ['shedding','low shedding','no shed']],
   ['experience', ['none','some','lots']],
-  ['age', ['puppy','1-3','4-6','7-9','old']],
+  ['age', ['baby','1-3','4-6','7-9','old']],
   ['gender', ['male', 'female']]  
 ].each_with_index do |attrs, index|
   # each_with_index is zero based

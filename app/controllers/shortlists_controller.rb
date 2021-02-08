@@ -5,7 +5,11 @@ class ShortlistsController < ApplicationController
   # GET /shortlists
   def index
     @shortlists = current_user.shortlist
-    @shortlist_pets = @shortlists.map {|list| {name: Pet.find(list.pet_id).name, id: Pet.find(list.pet_id).id}}
+    @shortlist_pets = @shortlists.map {|list| {name: Pet.find(list.pet_id).name, 
+      id: Pet.find(list.pet_id).id, 
+      featured_image: Pet.find(list.pet_id).featured_image,
+      species: Pet.find(list.pet_id).trait_options[4]}
+    }
 
     render json: @shortlist_pets
   end
@@ -17,7 +21,6 @@ class ShortlistsController < ApplicationController
 
   # POST /shortlists
   def create
-    puts current_user.id
     @shortlist = Shortlist.create(shortlist_params)
 
     if @shortlist.save
