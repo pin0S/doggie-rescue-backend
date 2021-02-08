@@ -1,6 +1,7 @@
 class Pet < ApplicationRecord
   has_one :adoption
   has_many :pet_traits, dependent: :destroy
+  validates :name, :breed, :description, presence: true
 
   # Need the following relationship since when we add a trait_option
   # to a pet, we need to know the trait_option's `id`
