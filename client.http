@@ -121,3 +121,14 @@ DELETE http://localhost:3000/api/user/preferences/1000
 ### Users - Index method - note authentication needs to be disabled!
 
 GET http://localhost:3000/api/users
+
+### Shortlist index
+
+GET http://localhost:3000/api/shortlist
+
+
+### Testing shortlist creation
+POST http://localhost:3000/api/shortlist
+Content-Type: application/json
+
+
