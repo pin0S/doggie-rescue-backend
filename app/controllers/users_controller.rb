@@ -79,7 +79,6 @@ class UsersController < ApplicationController
 
     for pet in @pets do
       score = pet.trait_option_ids.intersection(@user.trait_option_ids).length
-      puts score
       @matches.push({
             pet_id: pet.id, 
             name: pet.name, 

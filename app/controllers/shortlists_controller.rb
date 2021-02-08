@@ -17,6 +17,7 @@ class ShortlistsController < ApplicationController
 
   # POST /shortlists
   def create
+    puts current_user.id
     @shortlist = Shortlist.create(shortlist_params)
 
     if @shortlist.save
