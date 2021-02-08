@@ -4,16 +4,14 @@ class PetsController < ApplicationController
   # GET /pets
   def index
     @pets = Pet.all
-    # render json: @pets.to_json(
-        # :include => {
-        #   :trait_options => {only: [:name]}
-        # })
+    render '/pets/index.json.jbuilder'
+
   end
 
 
   # GET /pets/1
   def show
-    render json: @pet.to_json(include: [:trait_options])
+    render '/pets/show.jbuilder'
   end
 
   # POST /pets
