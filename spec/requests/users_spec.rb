@@ -1,10 +1,48 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe "Users", type: :request do
-#   describe "GET /users" do
-#     it "works! (now write some real specs)" do
-#       get users_index_path
-#       expect(response).to have_http_status(200)
-#     end
-#   end
-# end
+RSpec.describe "Users", type: :request do
+  describe "GET users#index" do
+    before(:example) do
+      @first_user = FactoryBot.create(:user)
+      @second_user = FactoryBot.create(:user)
+      get users_path
+      @json_response = JSON.parse(response.body)
+    end
+
+    it "returns status 200" do
+      expect(response).to have_http_status(200)
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
+    end
+
+    it "contains correct number of entries" do
+      expect(@json_response.count).to eq(2)
+    end
+
+    it "contains the correct attributes" do
+      expect(@json_response.first).to include({
+        'id' => @first_user.id,
+        'email' => @first_user.email,
+      })
+    end
+  end
+
+    describe 'POST task#create' do
+        context 'when the task is valid' do
+        before(:example) do 
+            @user_params = FactoryBot.attributes_for(:user)
+            post users_path, params: { user: @user_params}
+        end
+  
+        it "returns http created" do
+            expect(response).to have_http_status(:created)
+        end
+
+        it "saves pet to database" do
+            expect(User.last.email).to eq(@user_params[:email])
+        end
+    end
+  end
+end

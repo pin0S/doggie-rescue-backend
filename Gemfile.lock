@@ -93,6 +93,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
+    jbuilder (2.10.1)
+      activesupport (>= 5.0.0)
     jmespath (1.4.0)
     jwt (1.5.6)
     knock (2.1.1)
@@ -205,6 +207,7 @@ DEPENDENCIES
   byebug
   factory_bot_rails
   faker (~> 2.15, >= 2.15.1)
+  jbuilder (~> 2.7)
   knock
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)

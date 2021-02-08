@@ -19,17 +19,34 @@ RSpec.describe "Pets", type: :request do
     end
 
     it "contains correct number of entries" do
-      expect(@json_response['pets'].count).to eq(3)
+      expect(@json_response.count).to eq(3)
     end
 
     it "contains the correct attributes" do
-      expect(@json_response['pets'].first).to include({
-        id => @first_pet.id,
-        name => @first_pet.name,
-        breed => @first_pet.breed,
-        description => @first_pet.description,
+      expect(@json_response.first).to include({
+        'id' => @first_pet.id,
+        'name' => @first_pet.name,
+        'breed' => @first_pet.breed,
+        'description' => @first_pet.description,
       })
     end
+  end
 
+    describe 'POST task#create' do
+      context 'when the task is valid' do
+        before(:example) do 
+          @pet_params = FactoryBot.attributes_for(:pet)
+          post pets_path, params: { pet: @pet_params}
+      end
+    
+
+      it "returns http created" do
+        expect(response).to have_http_status(:created)
+      end
+
+      it "saves pet to database" do
+        expect(Pet.last.name).to eq(@pet_params[:name])
+      end
+    end
   end
 end
