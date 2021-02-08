@@ -29,8 +29,8 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-    describe 'POST task#create' do
-        context 'when the task is valid' do
+    describe 'POST users#create' do
+        context 'when the user is valid' do
         before(:example) do 
             @user_params = FactoryBot.attributes_for(:user)
             post users_path, params: { user: @user_params}
@@ -40,7 +40,7 @@ RSpec.describe "Users", type: :request do
             expect(response).to have_http_status(:created)
         end
 
-        it "saves pet to database" do
+        it "saves user to database" do
             expect(User.last.email).to eq(@user_params[:email])
         end
     end

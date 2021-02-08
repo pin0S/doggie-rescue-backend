@@ -32,19 +32,18 @@ RSpec.describe "Pets", type: :request do
     end
   end
 
-    describe 'POST task#create' do
-      context 'when the task is valid' do
-        before(:example) do 
-          @pet_params = FactoryBot.attributes_for(:pet)
-          post pets_path, params: { pet: @pet_params}
+  describe 'POST pets#create' do
+    context 'when the pet is valid' do
+      before(:example) do
+        @pet_params = FactoryBot.attributes_for(:pet)
+        post pets_path, params: { pet: @pet_params }
       end
-    
-
-      it "returns http created" do
+  
+      it 'returns http created' do
         expect(response).to have_http_status(:created)
       end
-
-      it "saves pet to database" do
+  
+      it 'saves the pet to the database' do
         expect(Pet.last.name).to eq(@pet_params[:name])
       end
     end

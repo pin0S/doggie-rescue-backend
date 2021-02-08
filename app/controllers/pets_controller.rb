@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :update, :destroy]
+  before_action :authenticate_user, only: [:create]
 
   # GET /pets
   def index
@@ -53,6 +54,7 @@ class PetsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def pet_params
-    params.require(:pet).permit(:name, :breed, :description, :featured_image, trait_option_ids: [])
+    params.require(:pet)
+    .permit(:name, :breed, :description, :featured_image, trait_option_ids: [])
   end
 end
