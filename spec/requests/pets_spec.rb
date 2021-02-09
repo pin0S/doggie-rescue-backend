@@ -50,7 +50,7 @@ RSpec.describe "Pets", type: :request do
 
     context 'when pet is invalid' do
       before(:example) do
-        @pet_params = FactoryBot.attributes_for(:pet)
+        @pet_params = FactoryBot.attributes_for(:pet, :invalid)
         post pets_path, params: { pet: @pet_params }
         @json_response = JSON.parse(response.body)
       end
@@ -58,6 +58,9 @@ RSpec.describe "Pets", type: :request do
       it 'returned http unprocessable entity' do
         expect(response).to have_http_status(:unprocessable_entity)
       end
+
+      
+
     end
   end
 end

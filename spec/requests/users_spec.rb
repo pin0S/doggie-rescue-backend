@@ -44,5 +44,16 @@ RSpec.describe "Users", type: :request do
             expect(User.last.email).to eq(@user_params[:email])
         end
     end
+
+    describe 'POST users#create' do
+      context 'when the user is invalid' do
+      before(:example) do 
+          @user_params = FactoryBot.attributes_for(:user, :invalid)
+          post users_path, params: { user: @user_params}
+      end
+
+      it "returns http created" do
+          expect(response).to have_http_status(:unprocessable_entity)
+      end
   end
 end
