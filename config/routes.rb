@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :pets
     get '/shortlist', to: 'shortlists#index'
     post '/shortlist', to: 'shortlists#create'
+    delete '/shortlist', to: 'shortlist#destroy'
     get '/matches', to: 'users#match'
     
     resources :users

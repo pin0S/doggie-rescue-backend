@@ -11,5 +11,9 @@ FactoryBot.define do
         sequence :description do |n|
             Faker::Creature::Dog.meme_phrase
         end
+
+        trait :invalid do
+            name {nil}
+        end
     end
 end

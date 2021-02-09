@@ -81,10 +81,8 @@ class UsersController < ApplicationController
       score = pet.trait_option_ids.intersection(@user.trait_option_ids).length
       @matches.push({
             pet_id: pet.id, 
-            name: pet.name, 
-            gender: pet.trait_options[10].name, 
-            score: score, 
-            species: pet.trait_options[5]})
+            score: score
+            })
     end
 
     render json: @matches
