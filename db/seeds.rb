@@ -49,6 +49,6 @@ User.create!([username: Faker::Name.first_name,
               email: 'user@test.com',
               password: "123456",
               is_admin: false,
-              trait_options_ids: trait_ops_ids
+              trait_option_ids: trait_ops_ids
 ])
 
