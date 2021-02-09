@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   def sign_in 
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
+        #auth user
         auth_token = Knock::AuthToken.new payload: {sub: @user.id}
         render json: {email: @user.email, jwt: auth_token.token}, status: 200
         puts 'sign in success'
@@ -71,12 +72,16 @@ class UsersController < ApplicationController
 
   # Matches of Pets to user preferences
   def match
-  
+    # get the current user and all pets
     @user = User.find(current_user.id)
     @pets = Pet.all
 
+    # setup empty array to pass to frontend after calculations
     @matches = []
 
+    #loop over all pets and compare which trait options match
+    #user trait options and save the total to score
+    # push that score and that pet to matches to render to front end
     for pet in @pets do
       score = pet.trait_option_ids.intersection(@user.trait_option_ids).length
       @matches.push({
